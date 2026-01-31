@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VerdeStays - Eco-Luxe Vacation Rentals</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#079266",
+                        "primary-hover": "#057a55",
+                        "background-light": "#ffffff",
+                        "background-off": "#f8fcfb",
+                        "background-dark": "#10221c",
+                        "text-main": "#0d1c17",
+                        "text-secondary": "#717171",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "sans": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "1.5rem", 
+                        "xl": "2rem", 
+                        "2xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for category list */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased relative">
+<!-- Sticky Header -->
+<header class="fixed top-0 w-full z-50 bg-background-light border-b border-[#e7f4f0] shadow-sm transition-all duration-300">
+<div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
+<!-- Logo -->
+<div class="flex items-center gap-2 cursor-pointer flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-4xl">eco</span>
+<h1 class="text-primary text-2xl font-bold tracking-tight hidden md:block">VerdeStays</h1>
+</div>
+<!-- Search Pill (Centered) -->
+<div class="hidden md:flex flex-1 justify-center max-w-2xl px-4">
+<div class="flex items-center bg-white border border-gray-200 rounded-full shadow-soft hover:shadow-md transition-shadow cursor-pointer py-2.5 pl-6 pr-2 divide-x divide-gray-300 w-full max-w-[500px]">
+<button class="px-4 text-sm font-semibold text-text-main truncate bg-transparent border-none outline-none text-left">Anywhere</button>
+<button class="px-4 text-sm font-semibold text-text-main truncate bg-transparent border-none outline-none text-left">Any week</button>
+<button class="px-4 text-sm font-normal text-text-secondary truncate bg-transparent border-none outline-none text-left flex-grow">Add guests</button>
+<div class="bg-primary p-2.5 rounded-full text-white flex items-center justify-center ml-2">
+<span class="material-symbols-outlined text-[16px] font-bold">search</span>
+</div>
+</div>
+</div>
+<!-- Mobile Search Icon (Visible only on small screens) -->
+<div class="md:hidden flex flex-1 justify-end mr-4">
+<div class="bg-primary p-2 rounded-full text-white flex items-center justify-center">
+<span class="material-symbols-outlined">search</span>
+</div>
+</div>
+<!-- User Menu -->
+<div class="flex items-center justify-end gap-2 flex-shrink-0">
+<button class="hidden lg:block px-4 py-2 hover:bg-gray-100 rounded-full text-sm font-semibold transition-colors">
+                    Switch to hosting
+                </button>
+<button class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined text-text-main block">language</span>
+</button>
+<button class="flex items-center gap-2 border border-gray-200 rounded-full p-1 pl-3 hover:shadow-md transition-shadow ml-1 bg-white">
+<span class="material-symbols-outlined text-text-main text-xl">menu</span>
+<div class="bg-gray-500 rounded-full p-1 text-white">
+<span class="material-symbols-outlined text-2xl">account_circle</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Categories Bar -->
+<div class="max-w-[1440px] mx-auto px-6 pt-4 pb-2">
+<div class="flex gap-8 overflow-x-auto hide-scrollbar items-center pb-2">
+<!-- Active Category -->
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-primary pb-2 opacity-100">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">forest</span>
+<span class="text-xs font-semibold text-text-main whitespace-nowrap">Treehouses</span>
+</button>
+<!-- Inactive Categories -->
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">cottage</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Cabins</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">waves</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Beachfront</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">bolt</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Off-grid</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">wine_bar</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Vineyards</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">house_siding</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Tiny Homes</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">pool</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Amazing pools</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">kayaking</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">Lakefront</span>
+</button>
+<button class="group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 border-transparent hover:border-gray-200 pb-2 opacity-60 hover:opacity-100 transition-all">
+<span class="material-symbols-outlined text-text-main group-hover:scale-110 transition-transform">landscape</span>
+<span class="text-xs font-medium text-text-main whitespace-nowrap">National parks</span>
+</button>
+<!-- Filter Button -->
+<div class="ml-auto flex items-center pl-4">
+<button class="flex items-center gap-2 border border-gray-300 rounded-xl px-4 py-2.5 text-sm font-medium hover:border-black transition-colors">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+                        Filters
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Spacer -->
+<div class="h-44 md:h-48 w-full"></div>
+<!-- Main Listing Grid -->
+<main class="max-w-[1440px] mx-auto px-6 pb-24">
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Luxurious wooden cabin with pool in Joshua Tree desert landscape" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-xLMtCdgCVWhSNqxrlXhTJnN4dXpqYNbm1raCuPfBbl4IiHXRw3FXM98ZmUo4bv1V5f5hMcjb3egfW6AZzfsXzEFit4vKBfaq1N8J0nSP2mo5EImSNKZ-1LbJLmW3BBM6niFcpBWHX-U0I1Kg2HR2YUfxo4eh5PMzt6v3L2McRPjC3HxZHwShjwVFGYs1aOUySdDyTexdohfHzSnpZPloA5nZdg9_bWu4mav0FTL6aYNKmAEaLsJ92slYGHamuYZ0NgPrpC78eGlP"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+<!-- Pagination dots simulation -->
+<div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+<div class="w-1.5 h-1.5 rounded-full bg-white"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Joshua Tree, California</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.98</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Solar-powered retreat</p>
+<p class="text-text-secondary text-sm">Oct 22 - 27</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$245</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Bamboo eco-villa surrounded by tropical jungle in Bali" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx0GEGmaXrZ3fh4tW_aFOiUUNcJWimbnmTOySLLqnF4YEU2ttjthOpwGF8tSefSmVE4DhbuVLC1Hm0yYC9BUz5PWVgX8Pwg_gyeMTRmkUHXTrsHnsEBgjkF8RdZVzZUN0dk4AvMyE4sXfT2rXcoviYifksVi-ERe-lFS3haja_v8JzwakMLKwoBwGG7HK_QG9Qd7DpkHHdXP54owUpTiGFJ34MUh90X8e-tY1gN3a-q4o9u4N66NsE6Et5fHMzbQiIFy-TkUXD2Svb"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Bali, Indonesia</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.85</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Bamboo Eco-Villa</p>
+<p class="text-text-secondary text-sm">Nov 5 - 12</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$125</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Modern jungle sanctuary structure in Tulum Mexico" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCESEr4hZK4WHay9myUJodaFbbmdPPGKQ_gx3GLVjRO8e-no1zK_Vi9CFNVvlTYo9c73AQddkpwBVBXt4eLLceCniMxcGCLNVVMineC_EDmfEOdZZ8thrOB8nOIOUSskAgps8Rg0C06cvN8Kk5vC1ucVTjT38niRJ_lZ2mp3rl27F8Yvms_6bKb5FTonqCXzKh9IGXdPsUAMFhfkNLHnWbrY_4J2OxFAXjr6VOKvYFAuzVzAIl3NeLy5JrH_7Ag9Gp68jErL5Vo8ZaP"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Tulum, Mexico</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>5.0</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Jungle Sanctuary</p>
+<p class="text-text-secondary text-sm">Dec 10 - 17</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$310</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Cozy cabin in the woods of Portland Oregon" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf0CHyCzOebuTgh2ZHDVgX14J0ZDtJFyxgmSt9e17JGuwxlmaqdWNuda9pxW1dy5hK2Ofbhwl2Qmj_dU55lWyVgjF3r1-KzcEvBIIssnE7bYcTITIcZX8cv4jwmkr0irtrtHgwlvWZZifFOD54pTJlhNIVJo8fWmPuZERtoc_75JKdvMcDd_OkR3kVrn9U92j0oh-JLSbdwJxONJ8LaFPUnvdeXPEWDsIbHBd1v2_vwZhlLQhox1CS5Bje77T8mWnSUsNXe2ivCfrV"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Portland, Oregon</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.92</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Forest bathing retreat</p>
+<p class="text-text-secondary text-sm">Nov 15 - 20</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$180</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Beach house with ocean view in Maui Hawaii" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZLdcsuMPr9Z8T0TvmDKKFKVcDno5QlMUaMFTtwUHBmtszAqIfQ-_2dAsEf8VRFuE5nW3tHMI-f8Vy3-B6tz0hskLbTdKCKNcEM0PyalscchL4jzca0OAIasqGcqU3BNhaEf8Tol89olokg3IXCtbiaPUFZFDnBCis4ASyIUKwmYvya_YQ5lOZDTnpEr6iPQMxKohuvkVY_IcPsAK8GPV_NGyjS0B510a8kQNxWvxyktbb4iowXjl1GGsLILuGOnbHX32IXG80bJ-f"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Maui, Hawaii</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.99</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Off-grid beach house</p>
+<p class="text-text-secondary text-sm">Jan 5 - 12</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$450</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Snow covered modern cabin in Aspen Colorado" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBilobiF6QvZlc3N5Vq5nyw1URcK3Ms0mpw5dR9HtShL9U05tWR3YWF50aHt2Wp2vcnU8XgzPRpAUHUj01QSPxjWha8Yc68hPuHOizsjT8dFoY5IwTtjPslhBNEgBy6ao0GG9SFypw3u0epSt5a08DrcYsOTdl02ef3CZ3gL2i45RErdhz4qMRazY83b2G7q_KECwVT_oAiB9D-9qfh8nvn84SyrOqvystE2aU73aynrGYFwhkL3PswDxDV6qdjSLlrizi5zilX-5bx"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Aspen, Colorado</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.88</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Zero-emission chalet</p>
+<p class="text-text-secondary text-sm">Dec 20 - 27</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$620</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Red rock landscape view from a glamping tent in Sedona Arizona" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYmpQFM3WBeRFLsYwwPvr8rptdXAr9lEHiCqejyTCpJ0Rr6LLoiiuvEI7DGEjd0fvXXQ7YBTdqidLQZytYX4hZJow-5HPYUCFgDOgvE21M5iRwflHH3fNL09u0zMcQCndRhue8uqp47QGET-nfS6Mfad6cAM-896eNugfCELCQ4kWGJegUwc592zAJ4MTO-0Eaaf4S_vK7EzKicAe65VDL5wpp0GoGRrbeyNjVkvgyOnskTcSzzZAdnNoDKNrd2Re1bskKMjg-gddF"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Sedona, Arizona</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.95</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Glamping under stars</p>
+<p class="text-text-secondary text-sm">Nov 2 - 7</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$215</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
+<img alt="Lakeside cabin with mountain view in Vancouver Canada" class="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn6nXGyX5FI7W3BS_q3ulNMQfRN5jhdkTglUmxfCq2QgPtYFNA1oJIAfwF4BBqqdwGi3M83pkrUPUSgEHNtbQJYDxDA5hQSdkTw38tAYQnR_KjoUNZBvsxdVDq_UngIYlE1ZxBKf4eBZVk4DNvPEPCWJHPL1KS0QXbU4GzLtIUCY_F_DGxUEVROQOd8JAt7mgMFu8_qlQ8rk4hCTEmbB6Ouw4hLDoMeXwatPgkm2kF47trP2H9u7IUF_Esu5nrzuYyEJeIQu7gz2fd"/>
+<button class="absolute top-3 right-3 text-white/70 hover:scale-110 transition-transform z-10">
+<span class="material-symbols-outlined fill-black/50 text-2xl drop-shadow-md">favorite</span>
+</button>
+</div>
+<div class="flex justify-between items-start">
+<h3 class="font-bold text-text-main">Vancouver, Canada</h3>
+<div class="flex items-center gap-1 text-sm text-text-main">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span>4.90</span>
+</div>
+</div>
+<p class="text-text-secondary text-sm">Sustainable tiny home</p>
+<p class="text-text-secondary text-sm">Oct 28 - Nov 4</p>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="font-bold text-text-main">$145</span>
+<span class="text-text-main text-sm">night</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 z-40">
+<button class="bg-background-dark text-white hover:scale-105 transition-transform rounded-full px-6 py-3.5 flex items-center gap-2 shadow-xl hover:shadow-2xl font-semibold text-sm">
+<span class="material-symbols-outlined">map</span>
+            Show map
+        </button>
+</div>
+<!-- Footer -->
+<footer class="bg-background-off border-t border-gray-200 py-12">
+<div class="max-w-[1440px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<div>
+<h4 class="font-bold text-text-main mb-4">Support</h4>
+<ul class="space-y-3 text-text-secondary text-sm">
+<li><a class="hover:underline" href="#">Help Center</a></li>
+<li><a class="hover:underline" href="#">AirCover</a></li>
+<li><a class="hover:underline" href="#">Anti-discrimination</a></li>
+<li><a class="hover:underline" href="#">Disability support</a></li>
+<li><a class="hover:underline" href="#">Cancellation options</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-text-main mb-4">Hosting</h4>
+<ul class="space-y-3 text-text-secondary text-sm">
+<li><a class="hover:underline" href="#">VerdeStays your home</a></li>
+<li><a class="hover:underline" href="#">AirCover for Hosts</a></li>
+<li><a class="hover:underline" href="#">Hosting resources</a></li>
+<li><a class="hover:underline" href="#">Community forum</a></li>
+<li><a class="hover:underline" href="#">Hosting responsibly</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-text-main mb-4">VerdeStays</h4>
+<ul class="space-y-3 text-text-secondary text-sm">
+<li><a class="hover:underline" href="#">Newsroom</a></li>
+<li><a class="hover:underline" href="#">New features</a></li>
+<li><a class="hover:underline" href="#">Careers</a></li>
+<li><a class="hover:underline" href="#">Investors</a></li>
+<li><a class="hover:underline" href="#">Gift cards</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-text-main mb-4">Eco-Luxe</h4>
+<ul class="space-y-3 text-text-secondary text-sm">
+<li><a class="hover:underline" href="#">Our sustainability pledge</a></li>
+<li><a class="hover:underline" href="#">Green certification</a></li>
+<li><a class="hover:underline" href="#">Carbon offset program</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-text-secondary">
+<div class="flex items-center gap-2">
+<span>© 2023 VerdeStays, Inc.</span>
+<span class="hidden md:inline">·</span>
+<a class="hover:underline" href="#">Privacy</a>
+<span class="hidden md:inline">·</span>
+<a class="hover:underline" href="#">Terms</a>
+<span class="hidden md:inline">·</span>
+<a class="hover:underline" href="#">Sitemap</a>
+</div>
+<div class="flex items-center gap-4 font-semibold text-text-main">
+<button class="flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[18px]">language</span>
+                        English (US)
+                    </button>
+<button class="flex items-center gap-1 hover:underline">
+                        $ USD
+                    </button>
+<div class="flex gap-3">
+<!-- Social Icons Placeholder -->
+<div class="w-5 h-5 bg-text-main rounded-sm opacity-80 hover:opacity-100 cursor-pointer"></div>
+<div class="w-5 h-5 bg-text-main rounded-sm opacity-80 hover:opacity-100 cursor-pointer"></div>
+<div class="w-5 h-5 bg-text-main rounded-sm opacity-80 hover:opacity-100 cursor-pointer"></div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
