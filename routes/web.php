@@ -6,6 +6,8 @@ use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 
 Route::get('/', fn () => Inertia::render('home'))->name('home');
 
+Route::get('/search', fn () => Inertia::render('search'))->name('search');
+
 Route::middleware([
     'auth',
     ValidateSessionWithWorkOS::class,

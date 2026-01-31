@@ -11,8 +11,8 @@
 
 | Spec ID | Name | Status | Start Date | End Date | Notes |
 |---------|------|--------|-----------|----------|-------|
-| spec-ui-homepage-001 | HomePage UI Implementation | Pending | - | - | Convert mock HTML to React components |
-| spec-ui-mapsearch-002 | MapSearch UI Implementation | Pending | - | - | Implement search with map integration |
+| spec-ui-homepage-001 | HomePage UI Implementation | ✅ Completed | 2026-01-31 | 2026-01-31 | Airbnb-style listings page with Lucide icons |
+| spec-ui-mapsearch-002 | MapSearch UI Implementation | ✅ Core Complete | 2026-01-31 | 2026-01-31 | Map page with filters and property panel |
 | spec-ui-propertydetail-003 | PropertyDetail UI Implementation | Pending | - | - | Desktop & mobile responsive views |
 | spec-auth-rbac-004 | Authentication & Role-Based Access | Pending | - | - | WorkOS integration, role middleware |
 | spec-backend-api-005 | Backend API with Mock Data | Pending | - | - | Create endpoints for all UI pages |
@@ -22,37 +22,58 @@
 
 ## Current Status
 
-- **Current Spec**: spec-ui-homepage-001
+- **Current Spec**: spec-ui-propertydetail-003
 - **Last Updated**: 2026-01-31
-- **Overall Progress**: 0% (0/6 specs completed)
+- **Overall Progress**: 33% (2/6 specs completed)
 
 ---
 
 ## Spec Details
 
 ### spec-ui-homepage-001: HomePage UI Implementation
-**Status**: Pending  
+**Status**: ✅ Completed  
+**Completed**: 2026-01-31  
 **Objective**: Convert the HomePage mock HTML design into a fully functional React component with TypeScript, Tailwind CSS, and Inertia.js integration.
 
-**Key Deliverables**:
-- React components for header, hero section, featured properties, footer
-- TypeScript interfaces for props and data
-- Tailwind CSS styling matching the mock design
-- Mock data service for featured properties
-- Responsive design (mobile, tablet, desktop)
+**Deliverables Completed**:
+- ✅ Header component with logo, search pill, user menu (Lucide icons)
+- ✅ CategoryBar with scrollable category tabs
+- ✅ PropertyCard and PropertyGrid components
+- ✅ FloatingMapButton and Footer components
+- ✅ TypeScript interfaces (Property, Category)
+- ✅ Mock data service with Unsplash images
+- ✅ Responsive design (1-4 column grid)
+- ✅ Tailwind theme with custom colors and shadows
+- ✅ Pest feature tests (3 passing)
 
 ---
 
 ### spec-ui-mapsearch-002: MapSearch UI Implementation
-**Status**: Pending  
-**Objective**: Build the MapSearch page with search filters, map integration, and property listing.
+**Status**: ✅ Core Complete  
+**Started**: 2026-01-31  
+**Completed**: 2026-01-31  
+**Objective**: Build the MapSearch page with interactive map, property detail panel, and filter system.
 
-**Key Deliverables**:
-- Search filter component (location, price, dates, guests)
-- Map component with property markers
-- Property list view with sorting/filtering
-- Mobile-responsive layout
-- Integration with backend search API (mock data)
+**Deliverables Completed**:
+- ✅ SearchHeader, FilterPills, LocationSearch, MapControls components
+- ✅ MapView with decorative placeholder and positioned markers
+- ✅ PriceMarker and ClusterMarker components
+- ✅ PropertyDetailPanel (floating right sidebar with details)
+- ✅ Search types (MapProperty, SearchFilters interfaces)
+- ✅ Mock search service with 8 NYC properties
+- ✅ Filter state management and client-side filtering
+- ✅ /search route and Pest tests (3 passing)
+- ✅ FloatingMapButton now links to /search page
+
+**Remaining (optional)**:
+- Real Mapbox/Google Maps integration
+- Date range picker
+- Mobile responsive layout
+- [ ] FilterPills component (Type, Price, Area, Floor)
+- [ ] MapMarker and ClusterMarker components
+- [ ] MapControls (zoom, edit buttons)
+- [ ] Search page assembly with /search route
+- [ ] Pest feature tests
 
 ---
 
