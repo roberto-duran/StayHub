@@ -50,6 +50,51 @@ This project has domain-specific skills available. You MUST activate the relevan
 
 - You must only create documentation files if explicitly requested by the user.
 
+## Spec-Driven Development (SDD)
+
+This project follows Spec-Driven Development. All work must be guided by specs and progress tracking.
+
+### Core Principles
+
+- **Always read the current spec first**: Before starting any task, read the relevant spec file from `docs/` to understand requirements, deliverables, and acceptance criteria.
+- **Check PROGRESS.md**: Read `docs/PROGRESS.md` to understand the current status, which spec is active, and overall project progress.
+- **Work within spec boundaries**: Only implement what the current spec defines. Do not scope-creep or add features not in the spec.
+
+### Spec Files Location
+
+- All spec files are in the `docs/` folder with naming convention: `spec-{category}-{name}-{id}.md`
+- Progress tracking: `docs/PROGRESS.md`
+
+### Before Starting Work
+
+1. Read `docs/PROGRESS.md` to identify the current active spec
+2. Read the active spec file (e.g., `docs/spec-ui-homepage-001.md`) to understand:
+   - Objective and scope
+   - Key deliverables
+   - Acceptance criteria
+   - Dependencies on other specs
+
+### After Completing a Task
+
+1. **Update the spec file**: Mark completed tasks, add implementation notes, update status
+2. **Update PROGRESS.md**: Change spec status from "Pending" to "In Progress" or "Completed", update dates, add notes
+3. **Commit with spec reference**: Include spec ID in commit messages (e.g., `[spec-ui-homepage-001] Add hero section component`)
+
+### Creating New Specs
+
+When additional planning is needed:
+
+1. Create a new spec file following the naming convention: `spec-{category}-{name}-{next-id}.md`
+2. Add the new spec to the Spec Index table in `docs/PROGRESS.md`
+3. Include: Objective, Key Deliverables, Acceptance Criteria, Dependencies, and Estimated Timeline
+
+### Spec Status Values
+
+- **Pending**: Not yet started
+- **In Progress**: Currently being worked on
+- **Blocked**: Waiting on dependencies or decisions
+- **Completed**: All deliverables finished and tested
+
 ## Replies
 
 - Be concise in your explanations - focus on what's important rather than explaining obvious details.
