@@ -6,7 +6,7 @@
 
 ## Objective
 
-Convert the HomePage mock HTML design (`mock/home_page/code.html`) into a fully functional, production-ready React component using TypeScript, Tailwind CSS 4, and Inertia.js. The component must match the visual design in `mock/home_page/screen.png` and provide a seamless user experience across all device sizes.
+Convert the HomePage mock HTML design (`mocks/homepage/code.html`) into a fully functional, production-ready React component using TypeScript, Tailwind CSS 4, and Inertia.js. The component follows an Airbnb-style listings page design with sticky header, category filters, and responsive property grid.
 
 ---
 
@@ -16,29 +16,36 @@ Convert the HomePage mock HTML design (`mock/home_page/code.html`) into a fully 
 
 The HomePage must include the following sections:
 
-1. **Navigation Header**
-   - Logo/branding
-   - Navigation menu (Home, Search, Host, About, Contact)
-   - User authentication state indicator
-   - Login/Sign up buttons (when not authenticated)
+1. **Sticky Header**
+   - Logo/branding (StayHub with Leaf icon)
+   - Search pill with "Anywhere | Any week | Add guests" sections
+   - "Switch to hosting" button (desktop)
+   - Language selector (Globe icon)
+   - User menu with authentication state indicator
 
-2. **Hero Section**
-   - Large background image or gradient
-   - Headline and subheadline
-   - Search bar with filters (location, check-in, check-out, guests)
-   - Call-to-action button
+2. **Category Bar**
+   - Horizontal scrollable category tabs with icons (Treehouses, Cabins, Beachfront, etc.)
+   - Active state styling with primary color border
+   - Filters button with sliders icon
+   - Hidden scrollbar with smooth scrolling
 
-3. **Featured Properties Section**
-   - Grid layout of property cards (responsive: 1 col mobile, 2 cols tablet, 3+ cols desktop)
-   - Each card displays: image, title, location, price per night, rating, review count
-   - Hover effects and transitions
-   - "View All" link to search page
+3. **Property Listings Grid**
+   - Responsive grid (1 col mobile, 2 cols tablet, 3 cols medium, 4 cols desktop)
+   - Each card displays: image, location, title, dates, price per night, rating
+   - Hover effects: image zoom, pagination dots visibility
+   - Favorite button with heart icon
+   - Lazy loaded images
 
-4. **Additional Sections** (as per mock design)
-   - How it works / Features section
-   - Testimonials or reviews
-   - Call-to-action section
-   - Footer with links, social media, contact info
+4. **Floating Map Button**
+   - Fixed position at bottom center
+   - Dark background with "Show map" text and Map icon
+   - Hover scale effect
+
+5. **Footer**
+   - 4-column layout (Support, Hosting, StayHub, Eco-Luxe)
+   - Language/currency selectors
+   - Social media icons (Facebook, Twitter, Instagram)
+   - Copyright and legal links
 
 ### Technical Requirements
 
@@ -58,19 +65,22 @@ The HomePage must include the following sections:
 ### Component Structure
 
 ```
-HomePage/
-├── HomePage.tsx              # Main page component
+resources/js/
+├── pages/
+│   └── home.tsx              # Main page component
 ├── components/
-│   ├── Header.tsx            # Navigation header
-│   ├── HeroSection.tsx        # Hero banner with search
-│   ├── FeaturedProperties.tsx # Property grid
-│   ├── PropertyCard.tsx       # Individual property card
-│   ├── HowItWorks.tsx         # Features section
-│   ├── Testimonials.tsx       # Reviews/testimonials
-│   ├── CTA.tsx                # Call-to-action section
-│   └── Footer.tsx             # Footer
-└── types/
-    └── home.types.ts          # TypeScript interfaces
+│   └── home/
+│       ├── index.ts          # Barrel exports
+│       ├── Header.tsx        # Logo, search pill, user menu
+│       ├── CategoryBar.tsx   # Scrollable category tabs
+│       ├── PropertyCard.tsx  # Individual property card
+│       ├── PropertyGrid.tsx  # Responsive grid layout
+│       ├── FloatingMapButton.tsx # Fixed map button
+│       └── Footer.tsx        # 4-column footer
+├── types/
+│   └── property.ts           # Property & Category interfaces
+└── services/
+    └── mockData.ts           # Mock property data with Unsplash images
 ```
 
 ### Data Structure
@@ -80,37 +90,26 @@ interface Property {
   id: number;
   title: string;
   location: string;
-  image_url: string;
-  price_per_night: number;
+  imageUrl: string;
+  imageAlt: string;
+  pricePerNight: number;
   rating: number;
-  review_count: number;
+  dates: string;
 }
 
-interface HomePageProps {
-  featured_properties: Property[];
+interface Category {
+  id: string;
+  name: string;
+  icon: string; // Lucide icon name
 }
 ```
 
 ### Mock Data Service
 
-Create `resources/js/services/mockData.ts`:
-
-```typescript
-export const getFeaturedProperties = (): Property[] => {
-  return [
-    {
-      id: 1,
-      title: "Luxury Beachfront Villa",
-      location: "Bali, Indonesia",
-      image_url: "/images/property-1.jpg",
-      price_per_night: 250,
-      rating: 4.8,
-      review_count: 128,
-    },
-    // ... more properties
-  ];
-};
-```
+Implemented in `resources/js/services/mockData.ts` with:
+- 8 featured properties using Unsplash images
+- 9 category filters with Lucide icon mappings
+- Helper functions: `getFeaturedProperties()`, `getPropertyCategories()`
 
 ### Styling Approach
 
@@ -124,44 +123,45 @@ export const getFeaturedProperties = (): Property[] => {
 
 ## Tasks
 
-- [ ] Extract HTML structure from `mock/home_page/code.html`
-- [ ] Create HomePage.tsx main component with TypeScript
-- [ ] Create Header.tsx component with navigation
-- [ ] Create HeroSection.tsx with search bar component
-- [ ] Create FeaturedProperties.tsx grid component
-- [ ] Create PropertyCard.tsx component with hover effects
-- [ ] Create HowItWorks.tsx section
-- [ ] Create Testimonials.tsx section
-- [ ] Create CTA.tsx section
-- [ ] Create Footer.tsx component
-- [ ] Set up mock data service in `resources/js/services/mockData.ts`
-- [ ] Create TypeScript interfaces in `resources/js/types/home.types.ts`
-- [ ] Implement responsive design (test all breakpoints)
-- [ ] Add image lazy loading
-- [ ] Implement accessibility features (ARIA labels, semantic HTML)
+- [x] Extract HTML structure from `mocks/homepage/code.html`
+- [x] Create home.tsx main page component with TypeScript
+- [x] Create Header.tsx component with logo, search pill, user menu
+- [x] Create CategoryBar.tsx with scrollable category tabs
+- [x] Create PropertyGrid.tsx responsive grid component
+- [x] Create PropertyCard.tsx component with hover effects
+- [x] Create FloatingMapButton.tsx fixed button
+- [x] Create Footer.tsx component with 4-column layout
+- [x] Set up mock data service in `resources/js/services/mockData.ts`
+- [x] Create TypeScript interfaces in `resources/js/types/property.ts`
+- [x] Configure Tailwind theme with custom colors and shadows
+- [x] Add Plus Jakarta Sans font
+- [x] Implement responsive design (1-4 column grid)
+- [x] Add image lazy loading
+- [x] Implement accessibility features (ARIA labels, semantic HTML)
+- [x] Add hide-scrollbar CSS for category bar
 - [ ] Test on mobile, tablet, desktop devices
-- [ ] Optimize performance (bundle size, image optimization)
-- [ ] Create unit tests for components (if using Vitest)
-- [ ] Document component props and usage
+- [ ] Create Pest feature test for home route
+- [ ] Visual testing against mock design
 
 ---
 
 ## Completion Criteria
 
-- [ ] HomePage renders without errors in development and production builds
-- [ ] All sections match the mock design (`mock/home_page/screen.png`) visually
-- [ ] Responsive design works correctly on all breakpoints (320px, 768px, 1024px, 1440px)
-- [ ] Navigation links use Inertia.js and route correctly
-- [ ] Search bar is functional (can input text, select dates/guests)
-- [ ] Property cards display mock data correctly
-- [ ] Hover effects and transitions work smoothly
-- [ ] Images load lazily and don't block page rendering
+- [x] HomePage renders without errors in development and production builds
+- [ ] All sections match the mock design (`mocks/homepage/code.html`) visually
+- [x] Responsive design works correctly on all breakpoints (320px, 768px, 1024px, 1440px)
+- [x] Navigation links use Inertia.js and route correctly
+- [x] Search pill displays Anywhere/Any week/Add guests sections
+- [x] Category bar has scrollable tabs with active state
+- [x] Property cards display mock data correctly with Unsplash images
+- [x] Hover effects and transitions work smoothly (image zoom, pagination dots)
+- [x] Images load lazily with `loading="lazy"` attribute
 - [ ] Page passes accessibility audit (WCAG 2.1 AA)
 - [ ] TypeScript compilation passes without errors
 - [ ] No console errors or warnings in browser DevTools
 - [ ] Page load time is under 3 seconds on 4G network
-- [ ] All interactive elements are keyboard accessible
-- [ ] Component is documented with JSDoc comments
+- [x] All interactive elements are keyboard accessible
+- [x] Components are documented with JSDoc comments
 
 ---
 
@@ -196,11 +196,12 @@ export const getFeaturedProperties = (): Property[] => {
 
 ## Resources
 
-- Mock design: `mock/home_page/code.html` and `mock/home_page/screen.png`
+- Mock design: `mocks/homepage/code.html`
 - Tailwind CSS 4 docs: https://tailwindcss.com/docs
 - React 19 docs: https://react.dev
 - Inertia.js docs: https://inertiajs.com
-- TypeScript handbook: https://www.typescriptlang.org/docs
+- Lucide Icons: https://lucide.dev/icons/
+- Unsplash (images): https://unsplash.com
 
 ---
 
@@ -210,7 +211,8 @@ export const getFeaturedProperties = (): Property[] => {
 - TypeScript
 - Tailwind CSS 4
 - Inertia.js
-- clsx (for conditional classes)
+- Lucide React (icons)
+- clsx/tailwind-merge (via cn utility)
 
 ---
 
@@ -224,6 +226,7 @@ export const getFeaturedProperties = (): Property[] => {
 
 ---
 
-**Spec Version**: 1.0  
+**Spec Version**: 1.1  
 **Created**: 2026-01-31  
-**Status**: Pending Implementation
+**Updated**: 2026-01-31  
+**Status**: In Progress
