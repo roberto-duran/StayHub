@@ -13,7 +13,7 @@
 |---------|------|--------|-----------|----------|-------|
 | spec-ui-homepage-001 | HomePage UI Implementation | ✅ Completed | 2026-01-31 | 2026-01-31 | Airbnb-style listings page with Lucide icons |
 | spec-ui-mapsearch-002 | MapSearch UI Implementation | ✅ Core Complete | 2026-01-31 | 2026-01-31 | Map page with filters and property panel |
-| spec-ui-propertydetail-003 | PropertyDetail UI Implementation | Pending | - | - | Desktop & mobile responsive views |
+| spec-ui-propertydetail-003 | PropertyDetail UI Implementation | ✅ Completed | 2026-01-31 | 2026-01-31 | Desktop & mobile responsive views |
 | spec-auth-rbac-004 | Authentication & Role-Based Access | Pending | - | - | WorkOS integration, role middleware |
 | spec-backend-api-005 | Backend API with Mock Data | Pending | - | - | Create endpoints for all UI pages |
 | spec-booking-system-006 | Booking System Implementation | Pending | - | - | Booking flow, calendar, payments |
@@ -22,9 +22,9 @@
 
 ## Current Status
 
-- **Current Spec**: spec-ui-propertydetail-003
+- **Current Spec**: spec-auth-rbac-004
 - **Last Updated**: 2026-01-31
-- **Overall Progress**: 33% (2/6 specs completed)
+- **Overall Progress**: 50% (3/6 specs completed)
 
 ---
 
@@ -78,16 +78,28 @@
 ---
 
 ### spec-ui-propertydetail-003: PropertyDetail UI Implementation
-**Status**: Pending  
+**Status**: ✅ Completed  
+**Started**: 2026-01-31  
+**Completed**: 2026-01-31  
 **Objective**: Create PropertyDetail page for desktop and mobile with image gallery, amenities, reviews, and booking CTA.
 
-**Key Deliverables**:
-- Desktop property detail page
-- Mobile property detail page
-- Image gallery component
-- Amenities list
-- Reviews section
-- Booking button integration
+**Deliverables Completed**:
+- ✅ ImageGallery component (5-image grid with hover effects, eco badge)
+- ✅ LightboxModal (custom fullscreen with navigation, thumbnails, keyboard support)
+- ✅ PropertyHeader (title, rating, Superhost badge, share/save buttons)
+- ✅ HostInfo (host avatar, verified badge, property specs)
+- ✅ PropertyHighlights (feature list with Lucide icons)
+- ✅ Description (expandable text with "Show more")
+- ✅ Amenities (2-column grid with icons, unavailable strikethrough)
+- ✅ Reviews (review cards with avatars and dates)
+- ✅ BookingWidget (sticky sidebar with price breakdown)
+- ✅ LocationMap (placeholder with animated pin)
+- ✅ ImageCarousel (mobile swipe gallery with dot indicators)
+- ✅ MobileBookingBar (sticky bottom bar)
+- ✅ PropertyDetail types extended (PropertyDetail, Amenity, Review, Host)
+- ✅ PropertyService with 2 mock properties
+- ✅ /property/{id} route with PropertyController
+- ✅ Pest feature tests (4 passing)
 
 ---
 

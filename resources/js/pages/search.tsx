@@ -1,7 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { useState, useMemo } from 'react';
 import {
-    SearchHeader,
     FilterPills,
     InactiveFilterPill,
     LocationSearch,
@@ -9,6 +8,7 @@ import {
     PropertyDetailPanel,
     MapView,
 } from '@/components/search';
+import { Header } from '@/components/home';
 import { mapProperties, filterProperties, defaultFilters } from '@/services/searchService';
 import type { MapProperty, SearchFilters } from '@/types/search';
 
@@ -158,7 +158,9 @@ export default function Search(_props: SearchProps) {
 
             <div className="flex h-screen flex-col overflow-hidden bg-gray-100">
                 {/* Header */}
-                <SearchHeader />
+                <header className="sticky top-0 z-20 border-b border-gray-200 bg-white">
+                    <Header />
+                </header>
 
                 {/* Main Content */}
                 <main className="relative flex-1 overflow-hidden">

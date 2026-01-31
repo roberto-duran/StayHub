@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
@@ -7,6 +8,8 @@ use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 Route::get('/', fn () => Inertia::render('home'))->name('home');
 
 Route::get('/search', fn () => Inertia::render('search'))->name('search');
+
+Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
 
 Route::middleware([
     'auth',

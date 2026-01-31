@@ -21,6 +21,91 @@ export interface Property {
 }
 
 /**
+ * Extended property with full details for the detail page.
+ */
+export interface PropertyDetail extends Property {
+    /** All property images */
+    images: string[];
+    /** Full description text */
+    description: string;
+    /** Number of reviews */
+    reviewCount: number;
+    /** Property type (cabin, apartment, villa, etc.) */
+    propertyType: string;
+    /** Number of bedrooms */
+    bedrooms: number;
+    /** Number of bathrooms */
+    bathrooms: number;
+    /** Number of beds */
+    beds: number;
+    /** Maximum guest capacity */
+    maxGuests: number;
+    /** List of amenities */
+    amenities: Amenity[];
+    /** Guest reviews */
+    reviews: Review[];
+    /** Host information */
+    host: Host;
+    /** Property latitude */
+    latitude: number;
+    /** Property longitude */
+    longitude: number;
+    /** Key highlights/features */
+    highlights: PropertyHighlight[];
+    /** Cleaning fee */
+    cleaningFee: number;
+    /** Service fee */
+    serviceFee: number;
+    /** Whether property is eco-certified */
+    ecoCertified: boolean;
+}
+
+/**
+ * Property amenity with icon and category.
+ */
+export interface Amenity {
+    id: number;
+    name: string;
+    icon: string;
+    category: 'essentials' | 'features' | 'safety' | 'location';
+    available: boolean;
+}
+
+/**
+ * Guest review.
+ */
+export interface Review {
+    id: number;
+    author: string;
+    avatar: string;
+    rating: number;
+    date: string;
+    comment: string;
+}
+
+/**
+ * Property host information.
+ */
+export interface Host {
+    id: number;
+    name: string;
+    avatar: string;
+    isSuperhost: boolean;
+    responseTime: string;
+    yearsHosting: number;
+    verified: boolean;
+}
+
+/**
+ * Property highlight/feature.
+ */
+export interface PropertyHighlight {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+/**
  * Represents a category filter for property listings.
  */
 export interface Category {
