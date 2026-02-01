@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role',
         'workos_id',
         'avatar',
     ];
@@ -45,5 +46,49 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Check if the user is a client.
+     */
+    public function isClient(): bool
+    {
+        return $this->role === 'client';
+    }
+
+    /**
+     * Check if the user is an owner.
+     */
+    public function isOwner(): bool
+    {
+        return $this->role === 'owner';
+    }
+
+    /**
+     * Check if the user is an admin.
+     */
+    public function isAdmin(): bool
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Check if the user has admin-level access (owner or admin).
+     */
+    public function hasAdminAccess(): bool
+    {
+        return in_array($this->role, ['owner', 'admin']);
+    }
+
+    /**
+     * Get the redirect path based on user role.
+     */
+    public function dashboardPath(): string
+    {
+        return match ($this->role) {
+            'admin' => '/admin/dashboard',
+            'owner' => '/owner/dashboard',
+            default => '/',
+        };
     }
 }

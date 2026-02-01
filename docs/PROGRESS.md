@@ -14,7 +14,7 @@
 | spec-ui-homepage-001 | HomePage UI Implementation | ✅ Completed | 2026-01-31 | 2026-01-31 | Airbnb-style listings page with Lucide icons |
 | spec-ui-mapsearch-002 | MapSearch UI Implementation | ✅ Core Complete | 2026-01-31 | 2026-01-31 | Map page with filters and property panel |
 | spec-ui-propertydetail-003 | PropertyDetail UI Implementation | ✅ Completed | 2026-01-31 | 2026-01-31 | Desktop & mobile responsive views |
-| spec-auth-rbac-004 | Authentication & Role-Based Access | Pending | - | - | WorkOS integration, role middleware |
+| spec-auth-rbac-004 | Authentication & Role-Based Access | ✅ Completed | 2026-01-31 | 2026-01-31 | WorkOS integration, role middleware |
 | spec-backend-api-005 | Backend API with Mock Data | Pending | - | - | Create endpoints for all UI pages |
 | spec-booking-system-006 | Booking System Implementation | Pending | - | - | Booking flow, calendar, payments |
 
@@ -22,9 +22,9 @@
 
 ## Current Status
 
-- **Current Spec**: spec-auth-rbac-004
+- **Current Spec**: spec-backend-api-005
 - **Last Updated**: 2026-01-31
-- **Overall Progress**: 50% (3/6 specs completed)
+- **Overall Progress**: 67% (4/6 specs completed)
 
 ---
 

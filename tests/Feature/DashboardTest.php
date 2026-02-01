@@ -6,8 +6,12 @@ test('guests are redirected to the login page', function () {
     $this->get('/dashboard')->assertRedirect('/login');
 });
 
-test('authenticated users can visit the dashboard', function () {
-    $this->actingAs($user = User::factory()->create());
+test('authenticated users are redirected to role-specific dashboard', function () {
+    $client = User::factory()->client()->create();
+    $owner = User::factory()->owner()->create();
+    $admin = User::factory()->admin()->create();
 
-    $this->get('/dashboard')->assertOk();
+    $this->actingAs($client)->get('/dashboard')->assertRedirect('/');
+    $this->actingAs($owner)->get('/dashboard')->assertRedirect('/owner/dashboard');
+    $this->actingAs($admin)->get('/dashboard')->assertRedirect('/admin/dashboard');
 });

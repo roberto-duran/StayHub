@@ -60,12 +60,30 @@ export function Header() {
 
             {/* User Menu */}
             <div className="flex items-center justify-end gap-2 flex-shrink-0">
-                <button
-                    type="button"
-                    className="hidden lg:block px-4 py-2 hover:bg-gray-100 rounded-full text-sm font-semibold transition-colors"
-                >
-                    Switch to hosting
-                </button>
+                {auth.user?.role === 'owner' && (
+                    <Link
+                        href="/owner/dashboard"
+                        className="hidden lg:block px-4 py-2 hover:bg-gray-100 rounded-full text-sm font-semibold transition-colors"
+                    >
+                        Owner Dashboard
+                    </Link>
+                )}
+                {auth.user?.role === 'admin' && (
+                    <Link
+                        href="/admin/dashboard"
+                        className="hidden lg:block px-4 py-2 hover:bg-gray-100 rounded-full text-sm font-semibold transition-colors text-purple-600"
+                    >
+                        Admin
+                    </Link>
+                )}
+                {!auth.user && (
+                    <button
+                        type="button"
+                        className="hidden lg:block px-4 py-2 hover:bg-gray-100 rounded-full text-sm font-semibold transition-colors"
+                    >
+                        Switch to hosting
+                    </button>
+                )}
                 <button
                     type="button"
                     className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -79,7 +97,7 @@ export function Header() {
                         className="flex items-center gap-2 border border-gray-200 rounded-full p-1 pl-3 hover:shadow-md transition-shadow ml-1 bg-white"
                     >
                         <Menu className="h-5 w-5 text-stay-text-main" />
-                        <div className="bg-gray-500 rounded-full p-1 text-white">
+                        <div className="bg-stay-primary rounded-full p-1 text-white">
                             <User className="h-6 w-6" />
                         </div>
                     </Link>
