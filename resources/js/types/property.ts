@@ -3,7 +3,7 @@
  */
 export interface Property {
     /** Unique identifier for the property */
-    id: number;
+    id: string;
     /** Display title/name of the property */
     title: string;
     /** Location description (city, region/country) */
@@ -64,7 +64,7 @@ export interface PropertyDetail extends Property {
  * Property amenity with icon and category.
  */
 export interface Amenity {
-    id: number;
+    id: string | number;
     name: string;
     icon: string;
     category: 'essentials' | 'features' | 'safety' | 'location';
@@ -75,7 +75,7 @@ export interface Amenity {
  * Guest review.
  */
 export interface Review {
-    id: number;
+    id: string | number;
     author: string;
     avatar: string;
     rating: number;
@@ -87,7 +87,7 @@ export interface Review {
  * Property host information.
  */
 export interface Host {
-    id: number;
+    id: string | number;
     name: string;
     avatar: string;
     isSuperhost: boolean;

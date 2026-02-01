@@ -41,7 +41,7 @@ export default function AdminUsers({ users, filters }: AdminUsersProps) {
         router.get('/admin/users', { search, role: roleFilter }, { preserveState: true });
     };
 
-    const handleRoleChange = (userId: number, newRole: string) => {
+    const handleRoleChange = (userId: string, newRole: string) => {
         router.patch(`/admin/users/${userId}`, { role: newRole }, { preserveState: true });
     };
 

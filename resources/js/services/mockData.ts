@@ -6,7 +6,7 @@ import type { Category, Property } from '@/types/property';
  */
 export const featuredProperties: Property[] = [
     {
-        id: 1,
+        id: '0194d3c4-9c02-7a56-8e5a-736021480112',
         title: 'Solar-powered retreat',
         location: 'Joshua Tree, California',
         imageUrl: 'https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&h=800&fit=crop',
@@ -16,7 +16,7 @@ export const featuredProperties: Property[] = [
         dates: 'Oct 22 – 27',
     },
     {
-        id: 2,
+        id: '0194d3c4-9c02-7f28-b0a7-20268578165b',
         title: 'Bamboo Eco-Villa',
         location: 'Bali, Indonesia',
         imageUrl: 'https://images.unsplash.com/photo-1602002418082-a4443e081dd1?w=800&h=800&fit=crop',
@@ -26,7 +26,7 @@ export const featuredProperties: Property[] = [
         dates: 'Nov 5 – 12',
     },
     {
-        id: 3,
+        id: '0194d3c4-9c02-7933-9f87-6e47f4f601b0',
         title: 'Jungle Sanctuary',
         location: 'Tulum, Mexico',
         imageUrl: 'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=800&h=800&fit=crop',
@@ -36,7 +36,7 @@ export const featuredProperties: Property[] = [
         dates: 'Dec 10 – 17',
     },
     {
-        id: 4,
+        id: '0194d3c4-9c02-7d2d-a2f1-6e47f4f601b1',
         title: 'Forest bathing retreat',
         location: 'Portland, Oregon',
         imageUrl: 'https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?w=800&h=800&fit=crop',
@@ -46,7 +46,7 @@ export const featuredProperties: Property[] = [
         dates: 'Nov 15 – 20',
     },
     {
-        id: 5,
+        id: '0194d3c4-9c02-7e2e-b3f2-6e47f4f601b2',
         title: 'Off-grid beach house',
         location: 'Maui, Hawaii',
         imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=800&fit=crop',
@@ -56,7 +56,7 @@ export const featuredProperties: Property[] = [
         dates: 'Jan 5 – 12',
     },
     {
-        id: 6,
+        id: '0194d3c4-9c02-7f2f-c4f3-6e47f4f601b3',
         title: 'Zero-emission chalet',
         location: 'Aspen, Colorado',
         imageUrl: 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?w=800&h=800&fit=crop',
@@ -66,7 +66,7 @@ export const featuredProperties: Property[] = [
         dates: 'Dec 20 – 27',
     },
     {
-        id: 7,
+        id: '0194d3c4-9c02-8030-d5f4-6e47f4f601b4',
         title: 'Glamping under stars',
         location: 'Sedona, Arizona',
         imageUrl: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800&h=800&fit=crop',
@@ -76,7 +76,7 @@ export const featuredProperties: Property[] = [
         dates: 'Nov 2 – 7',
     },
     {
-        id: 8,
+        id: '0194d3c4-9c02-8131-e6f5-6e47f4f601b5',
         title: 'Sustainable tiny home',
         location: 'Vancouver, Canada',
         imageUrl: 'https://images.unsplash.com/photo-1587061949409-02df41d5e562?w=800&h=800&fit=crop',

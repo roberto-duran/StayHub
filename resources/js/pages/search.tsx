@@ -19,7 +19,7 @@ interface SearchProps {
 export default function Search(_props: SearchProps) {
     const [filters, setFilters] = useState<SearchFilters>(defaultFilters);
     const [selectedProperty, setSelectedProperty] = useState<MapProperty | null>(null);
-    const [favorites, setFavorites] = useState<Set<number>>(new Set());
+    const [favorites, setFavorites] = useState<Set<string>>(new Set());
     const [zoom, setZoom] = useState(11);
 
     const filteredProperties = useMemo(() => filterProperties(mapProperties, filters), [filters]);
@@ -106,7 +106,7 @@ export default function Search(_props: SearchProps) {
         setFilters(defaultFilters);
     };
 
-    const handleToggleFavorite = (propertyId: number) => {
+    const handleToggleFavorite = (propertyId: string) => {
         setFavorites((prev) => {
             const updated = new Set(prev);
             if (updated.has(propertyId)) {

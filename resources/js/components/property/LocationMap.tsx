@@ -11,7 +11,7 @@ export function LocationMap({ location, description = 'Quiet location, close to 
             <h2 className="mb-4 text-xl font-bold">Where you'll be</h2>
             <div className="relative mb-3 h-64 w-full overflow-hidden rounded-2xl shadow-sm">
                 {/* Placeholder Map */}
-                <div className="h-full w-full bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50">
+                <div className="h-full w-full bg-linear-to-br from-emerald-50 via-teal-50 to-cyan-50">
                     <svg className="h-full w-full opacity-30" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
                         <path d="M0,100 Q100,50 200,100 T400,100" stroke="#059669" strokeWidth="2" fill="none" />
                         <path d="M0,150 Q100,200 200,150 T400,150" stroke="#059669" strokeWidth="2" fill="none" />

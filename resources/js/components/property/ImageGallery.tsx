@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { LayoutGrid, Leaf } from 'lucide-react';
-import { LightboxModal } from './LightboxModal';
+import { LightboxModal } from '@/components/property/LightboxModal';
 
 interface ImageGalleryProps {
     images: string[];

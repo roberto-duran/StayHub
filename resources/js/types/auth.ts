@@ -1,7 +1,7 @@
 export type UserRole = 'client' | 'owner' | 'admin';
 
 export type User = {
-    id: number;
+    id: string;
     name: string;
     email: string;
     role: UserRole;

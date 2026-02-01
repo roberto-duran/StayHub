@@ -18,13 +18,13 @@ export function PropertyDetailPanel({
     return (
         <div className="flex h-full w-full max-w-md flex-col overflow-hidden rounded-3xl bg-white/95 shadow-2xl backdrop-blur-sm lg:max-w-lg">
             {/* Header Image */}
-            <div className="relative h-64 flex-shrink-0 overflow-hidden lg:h-72">
+            <div className="relative h-64 shrink-0 overflow-hidden lg:h-72">
                 <img
                     src={property.imageUrl}
                     alt={property.imageAlt}
                     className="h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
 
                 {/* Close Button */}
                 <button

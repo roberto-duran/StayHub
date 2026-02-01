@@ -44,5 +44,5 @@ export interface PropertyCluster {
     latitude: number;
     longitude: number;
     count: number;
-    propertyIds: number[];
+    propertyIds: string[];
 }

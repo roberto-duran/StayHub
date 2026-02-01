@@ -22,7 +22,7 @@ interface PropertyShowProps {
 }
 
 export default function PropertyShow({ propertyId }: PropertyShowProps) {
-    const property = getPropertyById(Number(propertyId));
+    const property = getPropertyById(propertyId);
 
     if (!property) {
         return (

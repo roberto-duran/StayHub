@@ -16,7 +16,7 @@ export function MobileBookingBar({ pricePerNight, dates = 'Jan 12 – 17' }: Mob
                 </div>
                 <button
                     type="button"
-                    className="max-w-[200px] flex-1 rounded-xl bg-stay-primary px-8 py-3 text-base font-bold text-white shadow-lg shadow-stay-primary/30 transition-all hover:bg-stay-primary/90 active:scale-95"
+                    className="max-w-50 flex-1 rounded-xl bg-stay-primary px-8 py-3 text-base font-bold text-white shadow-lg shadow-stay-primary/30 transition-all hover:bg-stay-primary/90 active:scale-95"
                 >
                     Reserve
                 </button>
