@@ -1,15 +1,48 @@
 import type { Property } from './property';
 
-export interface MapProperty extends Property {
-    latitude: number;
-    longitude: number;
-    bedrooms: number;
-    bathrooms: number;
-    area: number;
-    floor: number;
-    propertyType: 'apartment' | 'house' | 'villa' | 'condo' | 'studio';
-    amenities: string[];
-    description: string;
+/**
+ * Map property for search results (uses new API format)
+ */
+export interface MapProperty {
+    id: string;
+    title: string;
+    location: string;
+    price: {
+        amount: number;
+        currency: string;
+        cleaning_fee: number;
+        service_fee: number;
+    };
+    rating: number;
+    reviews_count: number;
+    details: {
+        guests: number;
+        bedrooms: number;
+        beds: number;
+        bathrooms: number;
+        type: string;
+        eco_certified: boolean;
+    };
+    coordinates: {
+        latitude: number;
+        longitude: number;
+    };
+    images: {
+        main: string;
+        alt: string;
+        gallery: string[] | null;
+    };
+    dates_lbl: string;
+    highlights: Array<{ icon: string; title: string; description: string }> | null;
+    host?: {
+        id: string | number;
+        name: string;
+        avatar: string;
+        is_superhost: boolean;
+        joined_at: string;
+    };
+    amenities?: Array<{ id: string | number; name: string; icon: string }>;
+    description?: string;
 }
 
 export interface SearchFilters {

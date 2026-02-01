@@ -2,6 +2,8 @@ import { Heart, Star } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 import type { Property } from '@/types/property';
 
+const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop';
+
 interface PropertyCardProps {
     /** The property data to display */
     property: Property;
@@ -12,14 +14,17 @@ interface PropertyCardProps {
  * Features lazy loading, favorite button, and image pagination dots.
  */
 export function PropertyCard({ property }: PropertyCardProps) {
+    const imageUrl = property.images?.main || PLACEHOLDER_IMAGE;
+    const imageAlt = property.images?.alt || property.title;
+
     return (
         <Link href={`/property/${property.id}`} className="group cursor-pointer block">
             <article>
                 {/* Image Container */}
                 <div className="relative aspect-square overflow-hidden rounded-xl bg-gray-200 mb-3">
                     <img
-                        src={property.imageUrl}
-                        alt={property.imageAlt}
+                        src={imageUrl}
+                        alt={imageAlt}
                         loading="lazy"
                         className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -51,13 +56,13 @@ export function PropertyCard({ property }: PropertyCardProps) {
                     <h3 className="font-bold text-stay-text-main">{property.location}</h3>
                     <div className="flex items-center gap-1 text-sm text-stay-text-main">
                         <Star className="h-3.5 w-3.5 fill-current" />
-                        <span>{property.rating.toFixed(2)}</span>
+                        <span>{Number(property.rating).toFixed(2)}</span>
                     </div>
                 </div>
                 <p className="text-stay-text-secondary text-sm">{property.title}</p>
-                <p className="text-stay-text-secondary text-sm">{property.dates}</p>
+                <p className="text-stay-text-secondary text-sm">{property.dates_lbl}</p>
                 <div className="mt-1 flex items-baseline gap-1">
-                    <span className="font-bold text-stay-text-main">${property.pricePerNight}</span>
+                    <span className="font-bold text-stay-text-main">${property.price.amount}</span>
                     <span className="text-stay-text-main text-sm">night</span>
                 </div>
             </article>

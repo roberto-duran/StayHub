@@ -15,16 +15,16 @@
 | spec-ui-mapsearch-002 | MapSearch UI Implementation | ✅ Core Complete | 2026-01-31 | 2026-01-31 | Map page with filters and property panel |
 | spec-ui-propertydetail-003 | PropertyDetail UI Implementation | ✅ Completed | 2026-01-31 | 2026-01-31 | Desktop & mobile responsive views |
 | spec-auth-rbac-004 | Authentication & Role-Based Access | ✅ Completed | 2026-01-31 | 2026-01-31 | WorkOS integration, role middleware |
-| spec-backend-api-005 | Backend API with Mock Data | Pending | - | - | Create endpoints for all UI pages |
+| spec-backend-api-005 | Backend API with Mock Data | ✅ Completed | 2026-02-01 | 2026-02-01 | Database schema, API Resources, Inertia integration |
 | spec-booking-system-006 | Booking System Implementation | Pending | - | - | Booking flow, calendar, payments |
 
 ---
 
 ## Current Status
 
-- **Current Spec**: spec-backend-api-005
-- **Last Updated**: 2026-01-31
-- **Overall Progress**: 67% (4/6 specs completed)
+- **Current Spec**: spec-booking-system-006
+- **Last Updated**: 2026-02-01
+- **Overall Progress**: 83% (5/6 specs completed)
 
 ---
 
@@ -104,27 +104,40 @@
 ---
 
 ### spec-auth-rbac-004: Authentication & Role-Based Access
-**Status**: Pending  
+**Status**: ✅ Completed  
+**Started**: 2026-01-31  
+**Completed**: 2026-01-31  
 **Objective**: Implement WorkOS authentication and role-based access control.
 
-**Key Deliverables**:
-- WorkOS SSO integration (Gmail, Microsoft)
-- User roles (Client, Owner, Admin)
-- Protected routes and middleware
-- Role-based redirects
+**Deliverables Completed**:
+- ✅ WorkOS SSO integration (Gmail, Microsoft)
+- ✅ User roles (Client, Owner, Admin) with enum
+- ✅ EnsureRole middleware for protected routes
+- ✅ Role-based dashboard redirects
+- ✅ Admin, Owner, Client dashboard pages
+- ✅ Pest feature tests for all roles
 
 ---
 
 ### spec-backend-api-005: Backend API with Mock Data
-**Status**: Pending  
-**Objective**: Create Laravel API endpoints with mock data for all UI pages.
+**Status**: ✅ Completed  
+**Started**: 2026-02-01  
+**Completed**: 2026-02-01  
+**Objective**: Create Laravel API endpoints and connect frontend to database.
 
-**Key Deliverables**:
-- GET /api/properties (featured, search)
-- GET /api/properties/{id} (detail)
-- GET /api/search (with filters)
-- Mock data service
-- Response formatting
+**Deliverables Completed**:
+- ✅ Database schema (properties, categories, amenities, reviews tables)
+- ✅ Eloquent models with relationships (Property, Category, Amenity, Review)
+- ✅ API Resources (PropertyResource, CategoryResource, AmenityResource, ReviewResource, HostResource)
+- ✅ HomeController with paginated properties and categories
+- ✅ SearchController with location, price, guests, and type filters
+- ✅ PropertyController with eager-loaded relationships
+- ✅ Updated TypeScript types for nested API format (price.amount, images.main, etc.)
+- ✅ Frontend pages refactored to receive Inertia props (home, search, property/show)
+- ✅ Mock services kept as fallback
+- ✅ Categories table with 9 default categories via migration
+- ✅ Database seeder with 50 properties, users, amenities, reviews
+- ✅ Pest feature tests (12 tests covering API and Inertia endpoints)
 
 ---
 
@@ -162,5 +175,5 @@
 
 ---
 
-**Last Updated**: 2026-01-31  
-**Next Review**: Upon completion of spec-ui-homepage-001
+**Last Updated**: 2026-02-01  
+**Next Review**: Upon completion of spec-booking-system-006

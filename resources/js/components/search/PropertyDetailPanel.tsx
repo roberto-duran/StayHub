@@ -1,6 +1,8 @@
 import { Link } from '@inertiajs/react';
-import { Heart, Star, X, Bed, Bath, Maximize, Building2, MapPin } from 'lucide-react';
+import { Heart, Star, X, Bed, Bath, Users, Building2, MapPin } from 'lucide-react';
 import type { MapProperty } from '@/types/search';
+
+const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop';
 
 interface PropertyDetailPanelProps {
     property: MapProperty;
@@ -15,13 +17,16 @@ export function PropertyDetailPanel({
     onFavorite,
     isFavorite = false,
 }: PropertyDetailPanelProps) {
+    const imageUrl = property.images?.main || PLACEHOLDER_IMAGE;
+    const imageAlt = property.images?.alt || property.title;
+
     return (
         <div className="flex h-full w-full max-w-md flex-col overflow-hidden rounded-3xl bg-white/95 shadow-2xl backdrop-blur-sm lg:max-w-lg">
             {/* Header Image */}
             <div className="relative h-64 shrink-0 overflow-hidden lg:h-72">
                 <img
-                    src={property.imageUrl}
-                    alt={property.imageAlt}
+                    src={imageUrl}
+                    alt={imageAlt}
                     className="h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
@@ -50,7 +55,7 @@ export function PropertyDetailPanel({
 
                 {/* Price Badge */}
                 <div className="absolute bottom-4 left-4 rounded-xl bg-white/90 px-4 py-2 backdrop-blur-sm">
-                    <span className="text-2xl font-bold text-gray-900">€{property.pricePerNight}</span>
+                    <span className="text-2xl font-bold text-gray-900">${property.price.amount}</span>
                     <span className="text-gray-600"> / night</span>
                 </div>
             </div>
@@ -63,7 +68,7 @@ export function PropertyDetailPanel({
                     <div className="flex items-center gap-3">
                         <div className="flex items-center gap-1">
                             <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                            <span className="font-medium text-gray-900">{property.rating}</span>
+                            <span className="font-medium text-gray-900">{Number(property.rating).toFixed(2)}</span>
                         </div>
                         <span className="text-gray-400">•</span>
                         <div className="flex items-center gap-1 text-gray-600">
@@ -79,52 +84,48 @@ export function PropertyDetailPanel({
                         <Bed className="h-5 w-5 text-gray-500" />
                         <div>
                             <p className="text-sm text-gray-500">Bedrooms</p>
-                            <p className="font-semibold text-gray-900">{property.bedrooms}</p>
+                            <p className="font-semibold text-gray-900">{property.details.bedrooms}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-3 rounded-xl bg-gray-50 p-3">
                         <Bath className="h-5 w-5 text-gray-500" />
                         <div>
                             <p className="text-sm text-gray-500">Bathrooms</p>
-                            <p className="font-semibold text-gray-900">{property.bathrooms}</p>
+                            <p className="font-semibold text-gray-900">{property.details.bathrooms}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-3 rounded-xl bg-gray-50 p-3">
-                        <Maximize className="h-5 w-5 text-gray-500" />
+                        <Users className="h-5 w-5 text-gray-500" />
                         <div>
-                            <p className="text-sm text-gray-500">Area</p>
-                            <p className="font-semibold text-gray-900">{property.area} m²</p>
+                            <p className="text-sm text-gray-500">Guests</p>
+                            <p className="font-semibold text-gray-900">{property.details.guests}</p>
                         </div>
                     </div>
                     <div className="flex items-center gap-3 rounded-xl bg-gray-50 p-3">
                         <Building2 className="h-5 w-5 text-gray-500" />
                         <div>
-                            <p className="text-sm text-gray-500">Floor</p>
-                            <p className="font-semibold text-gray-900">{property.floor}</p>
+                            <p className="text-sm text-gray-500">Type</p>
+                            <p className="font-semibold text-gray-900 capitalize">{property.details.type}</p>
                         </div>
                     </div>
                 </div>
 
-                {/* Description */}
-                <div className="mb-6">
-                    <h3 className="mb-2 font-semibold text-gray-900">About this property</h3>
-                    <p className="leading-relaxed text-gray-600">{property.description}</p>
-                </div>
-
                 {/* Amenities */}
-                <div className="mb-6">
-                    <h3 className="mb-3 font-semibold text-gray-900">Amenities</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {property.amenities.map((amenity) => (
-                            <span
-                                key={amenity}
-                                className="rounded-full bg-stay-background-off px-3 py-1.5 text-sm font-medium text-gray-700"
-                            >
-                                {amenity}
-                            </span>
-                        ))}
+                {property.amenities && property.amenities.length > 0 && (
+                    <div className="mb-6">
+                        <h3 className="mb-3 font-semibold text-gray-900">Amenities</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {property.amenities.map((amenity) => (
+                                <span
+                                    key={amenity.id}
+                                    className="rounded-full bg-stay-background-off px-3 py-1.5 text-sm font-medium text-gray-700"
+                                >
+                                    {amenity.name}
+                                </span>
+                            ))}
+                        </div>
                     </div>
-                </div>
+                )}
 
                 {/* Spacer */}
                 <div className="flex-1" />

@@ -1,14 +1,16 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\WorkOS\Http\Middleware\ValidateSessionWithWorkOS;
 
-Route::get('/', fn () => Inertia::render('home'))->name('home');
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('/search', fn () => Inertia::render('search'))->name('search');
+Route::get('/search', SearchController::class)->name('search');
 
 Route::get('/property/{id}', [PropertyController::class, 'show'])->name('property.show');
 

@@ -9,20 +9,91 @@ import {
     MapView,
 } from '@/components/search';
 import { Header } from '@/components/home';
-import { mapProperties, filterProperties, defaultFilters } from '@/services/searchService';
 import type { MapProperty, SearchFilters } from '@/types/search';
+import type { Property } from '@/types/property';
 
-interface SearchProps {
-    // Future: add mapboxToken for real map integration
+interface ResourceCollection<T> {
+    data: T[];
 }
 
-export default function Search(_props: SearchProps) {
-    const [filters, setFilters] = useState<SearchFilters>(defaultFilters);
+interface SearchPageFilters {
+    location: string;
+    min_price: number;
+    max_price: number;
+    guests: number;
+    type: string;
+}
+
+interface SearchProps {
+    properties: ResourceCollection<Property>;
+    filters: SearchPageFilters;
+}
+
+const defaultFilters: SearchFilters = {
+    location: '',
+    checkIn: null,
+    checkOut: null,
+    guests: 1,
+    minPrice: 0,
+    maxPrice: 1000,
+    propertyTypes: [],
+    minArea: null,
+    maxArea: null,
+    minFloor: null,
+    maxFloor: null,
+};
+
+/**
+ * Convert API Property to MapProperty format
+ */
+function toMapProperty(property: Property): MapProperty {
+    return {
+        id: property.id,
+        title: property.title,
+        location: property.location,
+        price: property.price,
+        rating: property.rating,
+        reviews_count: property.reviews_count,
+        details: property.details,
+        coordinates: property.coordinates,
+        images: property.images,
+        dates_lbl: property.dates_lbl,
+        highlights: property.highlights,
+        host: property.host,
+        amenities: property.amenities,
+    };
+}
+
+export default function Search({ properties, filters: serverFilters }: SearchProps) {
+    const [filters, setFilters] = useState<SearchFilters>({
+        ...defaultFilters,
+        location: serverFilters.location,
+        minPrice: serverFilters.min_price,
+        maxPrice: serverFilters.max_price,
+        guests: serverFilters.guests,
+        propertyTypes: serverFilters.type ? [serverFilters.type] : [],
+    });
     const [selectedProperty, setSelectedProperty] = useState<MapProperty | null>(null);
     const [favorites, setFavorites] = useState<Set<string>>(new Set());
     const [zoom, setZoom] = useState(11);
 
-    const filteredProperties = useMemo(() => filterProperties(mapProperties, filters), [filters]);
+    const mapProperties = useMemo(() => properties.data.map(toMapProperty), [properties.data]);
+
+    // Client-side filtering for additional filters not sent to server
+    const filteredProperties = useMemo(() => {
+        return mapProperties.filter((property) => {
+            if (filters.minPrice > 0 && property.price.amount < filters.minPrice) {
+                return false;
+            }
+            if (filters.maxPrice < 1000 && property.price.amount > filters.maxPrice) {
+                return false;
+            }
+            if (filters.propertyTypes.length > 0 && !filters.propertyTypes.includes(property.details.type)) {
+                return false;
+            }
+            return true;
+        });
+    }, [mapProperties, filters]);
 
     const activeFilterPills = useMemo(() => {
         const pills = [];

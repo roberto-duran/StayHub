@@ -32,10 +32,10 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 interface CategoryBarProps {
     /** List of categories to display */
     categories: Category[];
-    /** Currently active category ID */
+    /** Currently active category slug */
     activeCategory?: string;
     /** Callback when a category is selected */
-    onCategoryChange?: (categoryId: string) => void;
+    onCategoryChange?: (categorySlug: string) => void;
 }
 
 /**
@@ -47,11 +47,11 @@ export function CategoryBar({
     activeCategory,
     onCategoryChange,
 }: CategoryBarProps) {
-    const [active, setActive] = useState(activeCategory ?? categories[0]?.id);
+    const [active, setActive] = useState(activeCategory ?? categories[0]?.slug);
 
-    const handleCategoryClick = (categoryId: string) => {
-        setActive(categoryId);
-        onCategoryChange?.(categoryId);
+    const handleCategoryClick = (categorySlug: string) => {
+        setActive(categorySlug);
+        onCategoryChange?.(categorySlug);
     };
 
     return (
@@ -59,13 +59,13 @@ export function CategoryBar({
             <div className="flex gap-8 overflow-x-auto hide-scrollbar items-center pb-2">
                 {categories.map((category) => {
                     const IconComponent = iconMap[category.icon] ?? TreePine;
-                    const isActive = active === category.id;
+                    const isActive = active === category.slug;
 
                     return (
                         <button
                             key={category.id}
                             type="button"
-                            onClick={() => handleCategoryClick(category.id)}
+                            onClick={() => handleCategoryClick(category.slug)}
                             className={cn(
                                 'group flex flex-col items-center gap-2 min-w-[64px] cursor-pointer border-b-2 pb-2 transition-all',
                                 isActive

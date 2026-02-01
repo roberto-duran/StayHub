@@ -4,8 +4,7 @@ use App\Models\Amenity;
 use App\Models\Property;
 use App\Models\User;
 
-test('can list properties', function () {
-    // Create data
+test('can list properties via API', function () {
     Property::factory()->count(3)->create();
 
     $response = $this->getJson('/api/properties');
@@ -14,16 +13,16 @@ test('can list properties', function () {
         ->assertJsonStructure([
             'data' => [
                 '*' => [
-                    'id', 'title', 'price', 'rating'
-                ]
+                    'id', 'title', 'price', 'rating',
+                ],
             ],
             'meta' => [
-                'current_page', 'from', 'last_page'
-            ]
+                'current_page', 'from', 'last_page',
+            ],
         ]);
 });
 
-test('can filter properties by price', function () {
+test('can filter properties by price via API', function () {
     Property::factory()->create(['price_per_night' => 100]);
     Property::factory()->create(['price_per_night' => 300]);
 
@@ -34,7 +33,7 @@ test('can filter properties by price', function () {
         ->assertJsonPath('data.0.price.amount', 300);
 });
 
-test('can show property details', function () {
+test('can show property details via API', function () {
     $host = User::factory()->create();
     $property = Property::factory()->create(['host_id' => $host->id]);
     $amenity = Amenity::factory()->create();
@@ -48,7 +47,22 @@ test('can show property details', function () {
         ->assertJsonStructure([
             'data' => [
                 'amenities',
-                'reviews'
-            ]
+                'reviews',
+            ],
         ]);
+});
+
+test('property detail page returns property data via Inertia', function () {
+    $host = User::factory()->create();
+    $property = Property::factory()->create(['host_id' => $host->id]);
+
+    $response = $this->get("/property/{$property->id}");
+
+    $response->assertStatus(200)
+        ->assertInertia(fn ($page) => $page
+            ->component('property/show')
+            ->has('property.data')
+            ->where('property.data.id', $property->id)
+            ->where('property.data.title', $property->title)
+        );
 });

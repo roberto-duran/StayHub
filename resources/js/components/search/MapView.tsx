@@ -49,7 +49,7 @@ export function MapView({ properties, selectedProperty, onPropertySelect }: MapV
                             style={{ top: pos.top, left: pos.left }}
                         >
                             <PriceMarker
-                                price={property.pricePerNight}
+                                price={property.price.amount}
                                 isSelected={selectedProperty?.id === property.id}
                                 onClick={() => onPropertySelect(property)}
                             />

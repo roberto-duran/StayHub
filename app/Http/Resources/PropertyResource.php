@@ -40,9 +40,9 @@ class PropertyResource extends JsonResource
                 'longitude' => $this->longitude,
             ],
             'images' => [
-                'main' => $this->image_url,
-                'alt' => $this->image_alt,
-                'gallery' => $this->images,
+                'main' => $this->image_url ?: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop',
+                'alt' => $this->image_alt ?: $this->title,
+                'gallery' => $this->images ?: [],
             ],
             'dates_lbl' => $this->dates,
             'highlights' => $this->highlights,
