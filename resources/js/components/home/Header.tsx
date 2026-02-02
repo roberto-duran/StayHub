@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { Globe, Leaf, Menu, Search, User } from 'lucide-react';
 import { dashboard, login } from '@/routes';
 import type { SharedData } from '@/types';
+import { SearchPill } from './search/SearchPill';
 
 /**
  * Sticky header component with logo, search pill, and user menu.
@@ -11,9 +12,9 @@ export function Header() {
     const { auth } = usePage<SharedData>().props;
 
     return (
-        <div className="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between gap-4">
+        <div className="max-w-360 mx-auto px-6 h-20 flex items-center justify-between gap-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 cursor-pointer flex-shrink-0">
+            <Link href="/" className="flex items-center gap-2 cursor-pointer shrink-0">
                 <Leaf className="h-9 w-9 text-stay-primary" />
                 <h1 className="text-stay-primary text-2xl font-bold tracking-tight hidden md:block">
                     StayHub
@@ -21,31 +22,7 @@ export function Header() {
             </Link>
 
             {/* Search Pill (Centered) - Desktop */}
-            <div className="hidden md:flex flex-1 justify-center max-w-2xl px-4">
-                <div className="flex items-center bg-white border border-gray-200 rounded-full shadow-soft hover:shadow-hover transition-shadow cursor-pointer py-2.5 pl-6 pr-2 divide-x divide-gray-300 w-full max-w-[500px]">
-                    <button
-                        type="button"
-                        className="px-4 text-sm font-semibold text-stay-text-main truncate bg-transparent border-none outline-none text-left"
-                    >
-                        Anywhere
-                    </button>
-                    <button
-                        type="button"
-                        className="px-4 text-sm font-semibold text-stay-text-main truncate bg-transparent border-none outline-none text-left"
-                    >
-                        Any week
-                    </button>
-                    <button
-                        type="button"
-                        className="px-4 text-sm font-normal text-stay-text-secondary truncate bg-transparent border-none outline-none text-left flex-grow"
-                    >
-                        Add guests
-                    </button>
-                    <div className="bg-stay-primary p-2.5 rounded-full text-white flex items-center justify-center ml-2">
-                        <Search className="h-4 w-4" strokeWidth={3} />
-                    </div>
-                </div>
-            </div>
+            <SearchPill />
 
             {/* Mobile Search Icon */}
             <div className="md:hidden flex flex-1 justify-end mr-4">
@@ -59,7 +36,7 @@ export function Header() {
             </div>
 
             {/* User Menu */}
-            <div className="flex items-center justify-end gap-2 flex-shrink-0">
+            <div className="flex items-center justify-end gap-2 shrink-0">
                 {auth.user?.role === 'owner' && (
                     <Link
                         href="/owner/dashboard"
